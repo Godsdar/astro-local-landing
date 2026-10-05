@@ -1,0 +1,18 @@
+---
+import { site } from "../../site.config.ts";
+import { telHref } from "../lib/format.ts";
+---
+
+<header class="border-b border-black/10">
+  <div class="container flex items-center justify-between py-4">
+    <a href="#top" class="text-lg font-bold no-underline" style="color: var(--c-ink)">
+      {site.businessName}
+    </a>
+    <nav class="flex items-center gap-4 text-sm">
+      <a href="#services">Услуги</a>
+      {site.showPricing && <a href="#pricing">Цены</a>}
+      <a href="#contacts">Контакты</a>
+      <a class="btn btn-primary" href={telHref(site.phone)}>Позвонить</a>
+    </nav>
+  </div>
+</header>

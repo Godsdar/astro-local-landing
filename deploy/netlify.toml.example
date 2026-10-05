@@ -1,0 +1,12 @@
+# Netlify template. Rename to netlify.toml when deploying manually.
+# No tokens here. The account must belong to the client.
+#
+# [build]
+#   command = "npm run build"
+#   publish = "dist"
+#
+# [build.environment]
+#   NODE_VERSION = "22"
+#
+# Commercial use on the Free plan was not restricted on the pricing page read
+# (netlify.com/pricing); verify the Terms of Use and check with a lawyer.

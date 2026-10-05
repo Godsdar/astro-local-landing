@@ -1,0 +1,32 @@
+---
+import { site } from "../../site.config.ts";
+import { telHref, waHref, tgHref } from "../lib/format.ts";
+---
+
+<section id="contacts" class="section" style="background: color-mix(in srgb, var(--c-ink) 4%, transparent)">
+  <div class="container grid gap-6 md:grid-cols-2">
+    <div>
+      <h2 class="text-2xl font-bold">Контакты</h2>
+      <ul class="mt-4 space-y-2">
+        <li>Телефон: <a href={telHref(site.phone)}>{site.phone}</a></li>
+        {site.whatsapp && <li><a href={waHref(site.whatsapp)}>WhatsApp</a></li>}
+        {site.telegram && <li><a href={tgHref(site.telegram)}>Telegram</a></li>}
+        {site.email && <li>Почта: <a href={`mailto:${site.email}`}>{site.email}</a></li>}
+        <li>Адрес: {site.address}</li>
+        <li>Часы: {site.hours}</li>
+        {site.mapUrl && <li><a href={site.mapUrl}>Показать на карте</a></li>}
+      </ul>
+      <div class="mt-6 flex flex-wrap gap-3">
+        <a class="btn btn-primary" href={telHref(site.phone)}>Позвонить</a>
+        {site.whatsapp && <a class="btn btn-accent" href={waHref(site.whatsapp)}>Написать в WhatsApp</a>}
+      </div>
+    </div>
+    <img
+      src="/images/map-placeholder.svg"
+      alt="Demo map placeholder"
+      width="640"
+      height="420"
+      class="w-full rounded-xl"
+    />
+  </div>
+</section>

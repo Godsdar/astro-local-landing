@@ -1,0 +1,6 @@
+# Optional Wrangler config for Cloudflare Pages direct upload. Rename to wrangler.toml.
+# No tokens here. Prefer the Git integration so the client owns the project.
+#
+# name = "client-landing"
+# pages_build_output_dir = "dist"
+# compatibility_date = "2026-01-01"

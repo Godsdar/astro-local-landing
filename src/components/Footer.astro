@@ -1,0 +1,11 @@
+---
+import { site } from "../../site.config.ts";
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t border-black/10">
+  <div class="container flex flex-col gap-2 py-6 text-sm opacity-80 sm:flex-row sm:justify-between">
+    <span>{site.businessName} © {year}</span>
+    <span>{site.address} · {site.hours}</span>
+  </div>
+</footer>

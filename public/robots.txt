@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Update the domain after you set the client domain and siteUrl in site.config.ts.
+Sitemap: https://demo-dental.example.com/sitemap-index.xml

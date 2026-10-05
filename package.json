@@ -1,0 +1,32 @@
+{
+  "name": "local-landing",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Local business landing starter (Demo). Astro + TypeScript + Tailwind + Vitest.",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "lint": "eslint .",
+    "check:astro": "astro check",
+    "test": "vitest run",
+    "check:size": "node scripts/check-size.mjs",
+    "check": "npm run lint && npm run check:astro && npm run test && npm run build && npm run check:size"
+  },
+  "dependencies": {
+    "astro": "5.18.2",
+    "@astrojs/sitemap": "3.7.4",
+    "@tailwindcss/vite": "4.3.3",
+    "tailwindcss": "4.3.3"
+  },
+  "devDependencies": {
+    "@astrojs/check": "0.9.10",
+    "@eslint/js": "9.39.5",
+    "eslint": "9.39.5",
+    "globals": "17.13.0",
+    "typescript": "5.9.3",
+    "typescript-eslint": "8.71.0",
+    "vitest": "3.2.7"
+  }
+}
