@@ -1,8 +1,12 @@
-# local-landing
+# astro-local-landing
+
+[![check](https://github.com/Godsdar/astro-local-landing/actions/workflows/check.yml/badge.svg)](https://github.com/Godsdar/astro-local-landing/actions/workflows/check.yml)
 
 A small static landing starter for a local business. Astro, TypeScript, Tailwind and Vitest. One config file, no backend, no external fonts.
 
 This repository ships with an invented **Demo** business. Replace all of it before showing a client. No real clients, prices, reviews or photos are included.
+
+![Demo Dental landing](docs/screenshot.png)
 
 ## What is inside
 
@@ -31,6 +35,14 @@ This repository ships with an invented **Demo** business. Replace all of it befo
 - Page budget: run `npm run check`, it fails if HTML + CSS + JS go over 150 KB.
 - SEO tags present: title, description, Open Graph, sitemap, robots.txt, JSON-LD, favicon.
 - Handover checklist: `~/job-search/templates/acceptance-handoff.md`.
+
+## What I tested
+
+- `npm run check` runs ESLint, `astro check`, Vitest, `astro build` and a page-size check in one command.
+- Tests: 11 Vitest cases for `site.config` (required fields, phone and link format, production placeholders) and for the contact link helpers.
+- Build: static output in `dist/`, one page.
+- Page budget: HTML + CSS + JS was 15.7 KB against a 150 KB limit.
+- GitHub Actions runs the same steps on each push.
 
 ## Commands
 
