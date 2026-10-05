@@ -1,28 +1,39 @@
 ---
 import "../styles/global.css";
 import { site } from "../../site.config.ts";
+import { themes, themeVars } from "../lib/theme.ts";
 
-const {
-  lang,
-  businessName,
-  description,
-  city,
-  address,
-  phone,
-  siteUrl,
-  ogImage,
-  colors,
-} = site;
+const { lang, businessName, description, city, address, phone, siteUrl, ogImage } = site;
 
-const title = site.demo ? `${businessName}` : businessName;
+const theme = themes[site.theme] ?? themes.calm;
+const vars = themeVars(theme);
+const indexable = import.meta.env.DEMO_BUILD !== "true" && !site.demo;
+
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
   name: businessName,
   description,
   telephone: phone,
-  address: { "@type": "PostalAddress", addressLocality: city, streetAddress: address },
   url: siteUrl,
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: city,
+    streetAddress: address,
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: site.map.lat,
+    longitude: site.map.lon,
+  },
+  openingHoursSpecification: [
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+      opens: "09:00",
+      closes: "19:00",
+    },
+  ],
 };
 ---
 
@@ -31,26 +42,31 @@ const jsonLd = {
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{title}</title>
+    <title>{site.demo ? `${businessName}` : businessName}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={siteUrl} />
+    {!indexable && <meta name="robots" content="noindex, nofollow" />}
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self'; font-src 'self'; frame-src https://www.openstreetmap.org; base-uri 'self'; form-action 'none'"
+    />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="manifest" href="/manifest.webmanifest" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content={title} />
+    <meta property="og:title" content={businessName} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={siteUrl} />
     <meta property="og:image" content={ogImage} />
     <meta name="twitter:card" content="summary_large_image" />
-    <style define:vars={{
-      "--c-primary": colors.primary,
-      "--c-accent": colors.accent,
-      "--c-ink": colors.ink,
-      "--c-paper": colors.paper,
-    }}></style>
+    <style define:vars={vars}></style>
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   </head>
   <body>
+    <a class="skip-link" href="#main">Перейти к содержимому</a>
     {site.demo && <div class="demo-banner">Demo: вымышленный бизнес для примера</div>}
     <slot />
+    <div class="mobile-call-bar">
+      <a class="btn btn-primary" style="width:100%" href={`tel:${phone.replace(/[^\d+]/g, "")}`}>Позвонить</a>
+    </div>
   </body>
 </html>

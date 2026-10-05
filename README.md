@@ -44,6 +44,12 @@ This repository ships with an invented **Demo** business. Replace all of it befo
 - Page budget: HTML + CSS + JS was 15.7 KB against a 150 KB limit.
 - GitHub Actions runs the same steps on each push.
 
+## Docs
+
+- `docs/config-reference.md`: every field in `site.config.ts`.
+- `docs/launch-checklist.md`: accounts, DNS, hosting notes, post-launch checks.
+- `docs/design-notes.md`: design decisions.
+
 ## Commands
 
 - `npm run dev`: local dev server.
