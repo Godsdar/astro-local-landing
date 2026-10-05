@@ -22,7 +22,7 @@ All the content lives in `site.config.ts`. Edit only that file for a new client.
 
 - `provider`: `"osm-embed"` (click-to-load OpenStreetMap iframe) or `"links-only"`.
 - `lat`, `lon`, `zoom`: demo uses a neutral point in central Almaty.
-- `label`: caption under the placeholder. The demo says it is not a real address.
+- `label`: caption under the map image. The demo says it is not a real address.
 - `links`: `[{ label, url }]` for "build a route" and "open in maps".
 
 No map request happens before the user clicks "Показать карту". Attribution

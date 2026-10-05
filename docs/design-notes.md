@@ -27,4 +27,4 @@ no-preference`.
 
 ## Illustrations
 
-Only own SVG placeholders (hero, map, favicon, OG image). No third-party images.
+Only own SVG illustrations (hero, map, favicon, OG image). No third-party images.

@@ -23,6 +23,7 @@ The demo business is invented and the build is `noindex`.
 - Themes: `calm`, `bold`, `warm` (one line), plus dark mode by `prefers-color-scheme`.
 - Map: OpenStreetMap loads only after a click; an own SVG image shows before that.
 - Background: a notebook grid drawn with CSS gradients. See "Background" below.
+- Illustrations: an own SVG hero image and map image (no stock photos, no third-party assets).
 - Speed: system fonts, no external scripts, own SVG images only.
 
 ## Background
