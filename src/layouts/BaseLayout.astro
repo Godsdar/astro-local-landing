@@ -64,7 +64,9 @@ const jsonLd = {
   <body class={bodyClass}>
     <a class="skip-link" href="#main">Перейти к содержимому</a>
     {site.demo && <div class="demo-banner">Demo: вымышленный бизнес для примера</div>}
-    <slot />
+    <div class="sheet">
+      <slot />
+    </div>
     <div class="mobile-call-bar">
       <a class="btn btn-primary" style="width:100%" href={`tel:${phone.replace(/[^\d+]/g, "")}`}>Позвонить</a>
     </div>

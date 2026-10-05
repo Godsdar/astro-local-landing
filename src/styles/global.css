@@ -142,18 +142,67 @@ a:hover {
   padding: 0 clamp(1rem, 3.5vw, 1.75rem);
 }
 
-.section {
-  padding: clamp(1.25rem, 3vw, 2.25rem) 0;
-}
-
-/* Content sits on a solid panel so text never runs over the checkerboard.
-   The checkerboard stays visible in the gutters around each panel. */
-.section > .container {
+/* One continuous sheet holds every section, so the page reads as a single
+   story. The checkerboard shows only around the sheet. */
+.sheet {
+  max-width: 72rem;
+  margin: clamp(0.5rem, 2vw, 1.25rem) auto;
   background: var(--c-paper);
   border: 1px solid var(--c-border);
   border-radius: var(--radius);
-  padding: clamp(1.25rem, 3vw, 2rem);
   box-shadow: var(--shadow-strong);
+  overflow: hidden;
+}
+
+.sheet > header {
+  background: var(--c-surface);
+  border-bottom: 1px solid var(--c-border);
+}
+
+.sheet > footer {
+  border-top: 1px solid var(--c-border);
+}
+
+.section {
+  padding: clamp(1.5rem, 3vw, 2.5rem) 0;
+}
+
+.section + .section {
+  border-top: 1px solid var(--c-border);
+}
+
+.process {
+  position: relative;
+}
+
+.process::before {
+  content: "";
+  position: absolute;
+  top: 1.1rem;
+  left: 2rem;
+  right: 2rem;
+  height: 2px;
+  background: var(--c-border);
+}
+
+@media (max-width: 1023px) {
+  .process::before {
+    display: none;
+  }
+}
+
+.step-dot {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 999px;
+  background: var(--c-primary-strong);
+  color: var(--c-primary-ink);
+  font-weight: 700;
 }
 
 .prose {
