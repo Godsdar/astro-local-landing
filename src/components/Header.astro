@@ -3,8 +3,8 @@ import { site } from "../../site.config.ts";
 import { telHref } from "../lib/format.ts";
 ---
 
-<header class="border-b border-black/10" style="background: var(--c-surface)">
-  <div class="container flex flex-wrap items-center justify-between gap-x-4 gap-y-2 py-3">
+<header class="border-b" style="border-color: var(--c-border); background: var(--c-surface)">
+  <div class="container flex flex-wrap items-center justify-between gap-x-4 gap-y-2 py-4">
     <a href="#top" class="text-lg font-bold no-underline" style="color: var(--c-ink)">
       {site.businessName}
     </a>
@@ -13,7 +13,7 @@ import { telHref } from "../lib/format.ts";
       {site.showPricing && <a href="#pricing">Цены</a>}
       <a href="#faq">Вопросы</a>
       <a href="#contacts">Контакты</a>
-      <a class="btn btn-primary" href={telHref(site.phone)}>Позвонить</a>
+      <a class="btn btn-primary hidden sm:inline-flex" href={telHref(site.phone)}>Позвонить</a>
     </nav>
   </div>
 </header>

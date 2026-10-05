@@ -7,11 +7,11 @@ import { site } from "../../site.config.ts";
     <section id="reviews" class="section">
       <div class="container">
         <h2 class="text-2xl font-bold">Отзывы</h2>
-        <div class="mt-6 grid gap-4 sm:grid-cols-2">
+        <div class="mt-6 grid gap-6 sm:grid-cols-2">
           {site.testimonials.map((item) => (
             <blockquote class="card">
               <p>{item.text}</p>
-              <footer class="mt-2 text-sm opacity-70">{item.name}</footer>
+              <footer class="mt-2 text-sm muted">{item.name}</footer>
             </blockquote>
           ))}
         </div>
@@ -23,10 +23,8 @@ import { site } from "../../site.config.ts";
         <h2 class="text-2xl font-bold">Отзывы</h2>
         <div class="card mt-6">
           <p class="font-semibold">Образец блока отзывов</p>
-          <p class="mt-2 opacity-80">Здесь появятся отзывы ваших клиентов.</p>
-          <p class="mt-2 text-sm opacity-60">
-            Demo: настоящих отзывов нет. Как добавить настоящие отзывы, описано в README.
-          </p>
+          <p class="mt-2 muted">Здесь появятся отзывы ваших клиентов.</p>
+          <p class="mt-2 text-sm muted">Demo: настоящих отзывов нет. Как добавить настоящие отзывы, описано в README.</p>
         </div>
       </div>
     </section>

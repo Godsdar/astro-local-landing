@@ -5,6 +5,10 @@
 - Astro (MIT)
 - Tailwind CSS (MIT)
 
+## Color palette
+
+- Open Color v1.9.1 (MIT), https://yeun.github.io/open-color/ . Teal and cyan steps are used for the brand colors and the checkerboard tints.
+
 ## Fonts
 
 None bundled. The site uses the system font stack, so there is no font license

@@ -11,7 +11,7 @@ import { site } from "../../site.config.ts";
           {site.faq.map((item) => (
             <details class="card">
               <summary class="cursor-pointer font-semibold">{item.q}</summary>
-              <p class="mt-2 opacity-80">{item.a}</p>
+              <p class="mt-2 muted">{item.a}</p>
             </details>
           ))}
         </div>
