@@ -1,23 +1,14 @@
 ---
 import "../styles/global.css";
 import { site } from "../../site.config.ts";
-import { themes, themeVars } from "../lib/theme.ts";
 
 const base = import.meta.env.BASE_URL.replace(/\/?$/, "/");
-const { lang, businessName, description, city, address, phone, siteUrl } = site;
+const { lang, businessName, description, city, address, phone } = site;
 
-const theme = themes[site.theme] ?? themes.calm;
-const vars = { ...themeVars(theme), "--grid-size": `${site.background.size}px` };
-const bodyClass = [
-  site.background.style === "plain" ? "no-grid" : "",
-  site.background.margin ? "with-margin" : "",
-]
-  .filter(Boolean)
-  .join(" ");
 const indexable = import.meta.env.DEMO_BUILD !== "true" && !site.demo;
-
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
 const ogImage = new URL(`${base}images/og.svg`, Astro.site).href;
+const bodyClass = site.background.style === "plain" ? "no-grid" : "";
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -48,7 +39,7 @@ const jsonLd = {
 ---
 
 <!doctype html>
-<html lang={lang}>
+<html lang={lang} data-theme={site.theme} style={`--grid-size:${site.background.size}px`}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -68,12 +59,10 @@ const jsonLd = {
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={ogImage} />
     <meta name="twitter:card" content="summary_large_image" />
-    <style define:vars={vars}></style>
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   </head>
   <body class={bodyClass}>
     <a class="skip-link" href="#main">Перейти к содержимому</a>
-    {site.background.margin && <span class="margin-line" aria-hidden="true"></span>}
     {site.demo && <div class="demo-banner">Demo: вымышленный бизнес для примера</div>}
     <slot />
     <div class="mobile-call-bar">

@@ -1,14 +1,13 @@
 ---
 import { site } from "../../site.config.ts";
 import { telHref, waHref, tgHref } from "../lib/format.ts";
-const base = import.meta.env.BASE_URL.replace(/\/?$/, "/");
 ---
 
 <section id="contacts" class="section">
-  <div class="container grid gap-6 md:grid-cols-2">
-    <div class="panel">
-      <h2 class="text-2xl font-bold">Контакты</h2>
-      <ul class="mt-4 space-y-2">
+  <div class="container">
+    <h2 class="text-2xl font-bold">Контакты</h2>
+    <div class="card mt-6 grid gap-6 md:grid-cols-2">
+      <ul class="space-y-2">
         <li>Телефон: <a href={telHref(site.phone)}>{site.phone}</a></li>
         {site.whatsapp && <li><a href={waHref(site.whatsapp)}>WhatsApp</a></li>}
         {site.telegram && <li><a href={tgHref(site.telegram)}>Telegram</a></li>}
@@ -17,17 +16,10 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, "/");
         <li>Часы: {site.hours}</li>
         <li><a href="#map">Как нас найти</a></li>
       </ul>
-      <div class="mt-6 flex flex-wrap gap-3">
+      <div class="flex flex-wrap content-start gap-3">
         <a class="btn btn-primary" href={telHref(site.phone)}>Позвонить</a>
-        {site.whatsapp && <a class="btn btn-accent" href={waHref(site.whatsapp)}>Написать в WhatsApp</a>}
+        {site.whatsapp && <a class="btn btn-ghost" href={waHref(site.whatsapp)}>Написать в WhatsApp</a>}
       </div>
     </div>
-    <img
-      src={`${base}images/demo-map.svg`}
-      alt="Demo map"
-      width="640"
-      height="420"
-      class="w-full rounded-xl"
-    />
   </div>
 </section>

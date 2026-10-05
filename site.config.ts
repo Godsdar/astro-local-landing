@@ -60,7 +60,7 @@ export const site: SiteConfig = {
   lang: "ru",
   demo: true,
   theme: "calm",
-  background: { style: "grid", size: 24, margin: true },
+  background: { style: "grid", size: 24, margin: false },
   businessName: "Demo Dental (Demo)",
   tagline: "Стоматология для всей семьи в Алматы",
   description:

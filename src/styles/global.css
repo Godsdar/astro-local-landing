@@ -1,32 +1,55 @@
 @import "tailwindcss";
 
+/* Palette: Open Color (https://yeun.github.io/open-color/), MIT.
+   Teal + cyan are adjacent hues, so nothing clashes. */
 :root {
-  --c-primary: #0f766e;
-  --c-accent: #14b8a6;
-  --c-ink: #0f172a;
-  --c-paper: #f8fafc;
-  --c-surface: #ffffff;
+  --c-paper: #f8f9fa; /* gray 0 */
+  --c-surface: #ffffff; /* white */
+  --c-ink: #212529; /* gray 9 */
+  --c-muted: #495057; /* gray 7 */
+  --c-primary: #0ca678; /* teal 7 */
+  --c-primary-strong: #087f5b; /* teal 9 */
+  --c-accent: #0b7285; /* cyan 9 */
+  --c-border: #dee2e6; /* gray 3 */
+
+  /* checkerboard cells: adjacent low tints (teal 0 / cyan 0), no clash */
+  --cell-a: #e6fcf5;
+  --cell-b: #e3fafc;
+
+  --grid-size: 24px;
   --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --space-1: 0.5rem;
   --space-2: 1rem;
   --space-3: 1.5rem;
   --space-4: 2.5rem;
   --space-5: 4rem;
-  --radius: 0.875rem;
-  --grid-size: 24px;
-  /* checkerboard cells: dark blue and green */
-  --cell-a: rgba(11, 61, 92, 0.2);
-  --cell-b: rgba(21, 128, 61, 0.2);
+  --radius: 0.75rem;
+}
+
+:root[data-theme="bold"] {
+  --c-primary: #087f5b;
+  --c-primary-strong: #0b5e43;
+  --c-accent: #0c8599;
+}
+
+:root[data-theme="warm"] {
+  --c-primary: #12b886;
+  --c-primary-strong: #099268;
+  --c-accent: #1098ad;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --c-ink: #e2e8f0;
-    --c-paper: #0b1220;
-    --c-surface: #131c2e;
-    /* same two colors, lighter so they read on the dark paper */
-    --cell-a: rgba(59, 130, 246, 0.18);
-    --cell-b: rgba(34, 197, 94, 0.18);
+    --c-paper: #212529;
+    --c-surface: #343a40;
+    --c-ink: #f8f9fa;
+    --c-muted: #ced4da;
+    --c-primary: #38d9a9;
+    --c-primary-strong: #20c997;
+    --c-accent: #3bc9db;
+    --c-border: #495057;
+    --cell-a: rgba(32, 201, 151, 0.06);
+    --cell-b: rgba(59, 201, 219, 0.06);
   }
 }
 
@@ -44,7 +67,7 @@ body {
   min-height: 100vh;
 }
 
-/* Notebook grid drawn with gradients. No image, no background-attachment: fixed. */
+/* Notebook checkerboard drawn with a conic-gradient (no image). */
 body::before {
   content: "";
   position: fixed;
@@ -64,44 +87,33 @@ body.no-grid::before {
   display: none;
 }
 
-.margin-line {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: calc(50% - 32rem - 2.5rem);
-  width: 2px;
-  background: color-mix(in srgb, #e11d48 50%, transparent);
-  z-index: -1;
-  pointer-events: none;
-  display: none;
-}
-
-@media (min-width: 1024px) {
-  body.with-margin .margin-line {
-    display: block;
-  }
-}
-
 @media (prefers-contrast: more), (prefers-reduced-transparency: reduce) {
   body::before {
-    opacity: 0.25;
+    display: none;
   }
 }
 
 @media print {
-  body::before,
-  .margin-line {
+  body::before {
     display: none;
   }
 }
 
 a {
-  color: var(--c-primary);
+  color: var(--c-primary-strong);
   text-underline-offset: 3px;
 }
 
+a:hover {
+  color: var(--c-primary);
+}
+
+.muted {
+  color: var(--c-muted);
+}
+
 :focus-visible {
-  outline: 3px solid var(--c-accent);
+  outline: 3px solid var(--c-primary-strong);
   outline-offset: 2px;
   border-radius: 4px;
 }
@@ -110,7 +122,7 @@ a {
   position: absolute;
   left: -999px;
   top: 0;
-  background: var(--c-primary);
+  background: var(--c-primary-strong);
   color: #fff;
   padding: 0.5rem 1rem;
   border-radius: 0 0 var(--radius) 0;
@@ -124,26 +136,22 @@ a {
 .container {
   max-width: 64rem;
   margin: 0 auto;
-  padding: 0 var(--space-2);
+  padding: 0 clamp(1rem, 4vw, 2rem);
 }
 
 .section {
-  padding: var(--space-5) 0;
+  padding: clamp(2.75rem, 6vw, 5rem) 0;
 }
 
-.panel {
-  background: var(--c-surface);
-  border: 1px solid color-mix(in srgb, var(--c-ink) 12%, transparent);
-  border-radius: var(--radius);
-  padding: var(--space-3);
+.prose {
+  max-width: 65ch;
 }
 
 .card {
   background: var(--c-surface);
-  border: 1px solid color-mix(in srgb, var(--c-ink) 12%, transparent);
+  border: 1px solid var(--c-border);
   border-radius: var(--radius);
   padding: var(--space-3);
-  transition: transform 160ms ease, box-shadow 160ms ease;
 }
 
 .btn {
@@ -156,31 +164,45 @@ a {
   font-weight: 600;
   text-decoration: none;
   border: 1px solid transparent;
-  transition: transform 140ms ease, background 140ms ease;
+  transition: transform 140ms ease, background 140ms ease, border-color 140ms ease;
 }
 
 .btn-primary {
-  background: var(--c-primary);
+  background: var(--c-primary-strong);
   color: #fff;
 }
 
 .btn-accent {
   background: var(--c-accent);
-  color: #06281f;
+  color: #fff;
 }
 
 .btn-ghost {
-  border-color: var(--c-primary);
-  color: var(--c-primary);
+  border-color: var(--c-border);
+  color: var(--c-primary-strong);
 }
 
 .btn:hover {
-  transform: translateY(-2px);
+  transform: translateY(-1px);
+}
+
+.btn-primary:hover,
+.btn-accent:hover {
+  filter: brightness(1.07);
+}
+
+.btn-ghost:hover {
+  background: color-mix(in srgb, var(--c-primary) 10%, transparent);
+}
+
+.btn:active {
+  transform: translateY(0);
 }
 
 .demo-banner {
-  background: var(--c-accent);
-  color: #1a1a1a;
+  background: var(--c-surface);
+  color: var(--c-ink);
+  border-bottom: 1px solid var(--c-border);
   text-align: center;
   font-weight: 600;
   padding: 0.5rem 1rem;
@@ -196,23 +218,10 @@ a {
   .mobile-call-bar {
     display: block;
     background: var(--c-surface);
-    border-top: 1px solid color-mix(in srgb, var(--c-ink) 12%, transparent);
-    padding: 0.6rem var(--space-2);
+    border-top: 1px solid var(--c-border);
+    padding: 0.6rem 1rem;
   }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .reveal {
-    animation: rise 420ms ease both;
-  }
-  @keyframes rise {
-    from {
-      opacity: 0;
-      transform: translateY(8px);
-    }
-    to {
-      opacity: 1;
-      transform: none;
-    }
+  body {
+    padding-bottom: 4.5rem;
   }
 }
