@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 420" role="img" aria-label="Demo hero image">
+  <rect width="640" height="420" fill="#e2e8f0"/>
+  <rect x="40" y="40" width="560" height="340" rx="16" fill="#f1f5f9" stroke="#94a3b8" stroke-dasharray="10 8"/>
+  <circle cx="220" cy="180" r="46" fill="#0f766e" opacity="0.15"/>
+  <rect x="300" y="150" width="220" height="16" rx="8" fill="#0f766e" opacity="0.2"/>
+  <rect x="300" y="186" width="160" height="12" rx="6" fill="#0f766e" opacity="0.14"/>
+</svg>

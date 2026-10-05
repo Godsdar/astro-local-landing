@@ -13,6 +13,8 @@
   --space-4: 2.5rem;
   --space-5: 4rem;
   --radius: 0.875rem;
+  --grid-size: 24px;
+  --grid-line: color-mix(in srgb, var(--c-ink) 8%, transparent);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -24,15 +26,67 @@
 }
 
 html {
-  color: var(--c-ink);
   background: var(--c-paper);
+  color: var(--c-ink);
   scroll-behavior: smooth;
 }
 
 body {
+  background: transparent;
   font-family: var(--font-sans);
   line-height: 1.6;
   margin: 0;
+  min-height: 100vh;
+}
+
+/* Notebook grid drawn with gradients. No image, no background-attachment: fixed. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: var(--grid-size) var(--grid-size);
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 6%, #000 94%, transparent);
+  mask-image: linear-gradient(to bottom, transparent, #000 6%, #000 94%, transparent);
+}
+
+body.no-grid::before {
+  display: none;
+}
+
+.margin-line {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: calc(50% - 32rem - 2.5rem);
+  width: 2px;
+  background: color-mix(in srgb, #e11d48 50%, transparent);
+  z-index: -1;
+  pointer-events: none;
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  body.with-margin .margin-line {
+    display: block;
+  }
+}
+
+@media (prefers-contrast: more), (prefers-reduced-transparency: reduce) {
+  body::before {
+    opacity: 0.25;
+  }
+}
+
+@media print {
+  body::before,
+  .margin-line {
+    display: none;
+  }
 }
 
 a {
@@ -69,6 +123,7 @@ a {
 
 .section {
   padding: var(--space-5) 0;
+  background: color-mix(in srgb, var(--c-paper) 84%, transparent);
 }
 
 .card {
