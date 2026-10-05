@@ -16,7 +16,7 @@
     "check": "npm run lint && npm run check:astro && npm run test && npm run build && npm run check:size && npm run check:placeholders"
   },
   "dependencies": {
-    "astro": "5.18.2",
+    "astro": "7.3.5",
     "@astrojs/sitemap": "3.7.4",
     "@tailwindcss/vite": "4.3.3",
     "tailwindcss": "4.3.3"
