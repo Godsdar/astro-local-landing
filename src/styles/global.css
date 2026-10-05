@@ -1,55 +1,52 @@
 @import "tailwindcss";
 
-/* Palette: Open Color (https://yeun.github.io/open-color/), MIT.
-   Teal + cyan are adjacent hues, so nothing clashes. */
+/* Palette inspired by WhatsApp (light and dark). Not affiliated with WhatsApp. */
 :root {
-  --c-paper: #f8f9fa; /* gray 0 */
-  --c-surface: #ffffff; /* white */
-  --c-ink: #212529; /* gray 9 */
-  --c-muted: #495057; /* gray 7 */
-  --c-primary: #0ca678; /* teal 7 */
-  --c-primary-strong: #087f5b; /* teal 9 */
-  --c-accent: #0b7285; /* cyan 9 */
-  --c-border: #dee2e6; /* gray 3 */
+  --c-paper: #f0f2f5;
+  --c-surface: #ffffff;
+  --c-ink: #111b21;
+  --c-muted: #667781;
+  --c-primary: #008069;
+  --c-primary-strong: #008069;
+  --c-primary-ink: #ffffff;
+  --c-accent: #008069;
+  --c-border: #d1d7db;
 
-  /* checkerboard cells: adjacent low tints (teal 0 / cyan 0), no clash */
-  --cell-a: #e6fcf5;
-  --cell-b: #e3fafc;
+  /* checkerboard cells: clearly different, still calm */
+  --cell-a: #f0f2f5;
+  --cell-b: #e2e8ec;
 
   --grid-size: 24px;
   --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  --space-1: 0.5rem;
-  --space-2: 1rem;
-  --space-3: 1.5rem;
-  --space-4: 2.5rem;
-  --space-5: 4rem;
   --radius: 0.75rem;
 }
 
 :root[data-theme="bold"] {
-  --c-primary: #087f5b;
-  --c-primary-strong: #0b5e43;
-  --c-accent: #0c8599;
+  --c-primary: #00a884;
+  --c-primary-strong: #00a884;
+  --c-primary-ink: #0b141a;
+  --c-accent: #00a884;
 }
 
 :root[data-theme="warm"] {
-  --c-primary: #12b886;
-  --c-primary-strong: #099268;
-  --c-accent: #1098ad;
+  --c-primary: #027a6d;
+  --c-primary-strong: #027a6d;
+  --c-accent: #027a6d;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --c-paper: #212529;
-    --c-surface: #343a40;
-    --c-ink: #f8f9fa;
-    --c-muted: #ced4da;
-    --c-primary: #38d9a9;
-    --c-primary-strong: #20c997;
-    --c-accent: #3bc9db;
-    --c-border: #495057;
-    --cell-a: rgba(32, 201, 151, 0.06);
-    --cell-b: rgba(59, 201, 219, 0.06);
+    --c-paper: #0b141a;
+    --c-surface: #111b21;
+    --c-ink: #e9edef;
+    --c-muted: #8696a0;
+    --c-primary: #00a884;
+    --c-primary-strong: #00a884;
+    --c-primary-ink: #0b141a;
+    --c-accent: #53bdeb;
+    --c-border: #222d34;
+    --cell-a: #0b141a;
+    --cell-b: #16242c;
   }
 }
 
@@ -89,7 +86,8 @@ body.no-grid::before {
 
 @media (prefers-contrast: more), (prefers-reduced-transparency: reduce) {
   body::before {
-    display: none;
+    background-image: none;
+    background-color: var(--c-paper);
   }
 }
 
@@ -100,12 +98,12 @@ body.no-grid::before {
 }
 
 a {
-  color: var(--c-primary-strong);
+  color: var(--c-primary);
   text-underline-offset: 3px;
 }
 
 a:hover {
-  color: var(--c-primary);
+  color: var(--c-accent);
 }
 
 .muted {
@@ -113,7 +111,7 @@ a:hover {
 }
 
 :focus-visible {
-  outline: 3px solid var(--c-primary-strong);
+  outline: 3px solid var(--c-primary);
   outline-offset: 2px;
   border-radius: 4px;
 }
@@ -123,7 +121,7 @@ a:hover {
   left: -999px;
   top: 0;
   background: var(--c-primary-strong);
-  color: #fff;
+  color: var(--c-primary-ink);
   padding: 0.5rem 1rem;
   border-radius: 0 0 var(--radius) 0;
 }
@@ -151,7 +149,7 @@ a:hover {
   background: var(--c-surface);
   border: 1px solid var(--c-border);
   border-radius: var(--radius);
-  padding: var(--space-3);
+  padding: 1.5rem;
 }
 
 .btn {
@@ -169,17 +167,17 @@ a:hover {
 
 .btn-primary {
   background: var(--c-primary-strong);
-  color: #fff;
+  color: var(--c-primary-ink);
 }
 
 .btn-accent {
   background: var(--c-accent);
-  color: #fff;
+  color: var(--c-primary-ink);
 }
 
 .btn-ghost {
   border-color: var(--c-border);
-  color: var(--c-primary-strong);
+  color: var(--c-primary);
 }
 
 .btn:hover {
@@ -188,11 +186,11 @@ a:hover {
 
 .btn-primary:hover,
 .btn-accent:hover {
-  filter: brightness(1.07);
+  filter: brightness(1.08);
 }
 
 .btn-ghost:hover {
-  background: color-mix(in srgb, var(--c-primary) 10%, transparent);
+  background: color-mix(in srgb, var(--c-primary) 12%, transparent);
 }
 
 .btn:active {
