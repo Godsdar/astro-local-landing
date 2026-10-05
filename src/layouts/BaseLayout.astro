@@ -7,7 +7,13 @@ const base = import.meta.env.BASE_URL;
 const { lang, businessName, description, city, address, phone, siteUrl } = site;
 
 const theme = themes[site.theme] ?? themes.calm;
-const vars = themeVars(theme);
+const vars = { ...themeVars(theme), "--grid-size": `${site.background.size}px` };
+const bodyClass = [
+  site.background.style === "plain" ? "no-grid" : "",
+  site.background.margin ? "with-margin" : "",
+]
+  .filter(Boolean)
+  .join(" ");
 const indexable = import.meta.env.DEMO_BUILD !== "true" && !site.demo;
 
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
@@ -65,8 +71,9 @@ const jsonLd = {
     <style define:vars={vars}></style>
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   </head>
-  <body>
+  <body class={bodyClass}>
     <a class="skip-link" href="#main">Перейти к содержимому</a>
+    {site.background.margin && <span class="margin-line" aria-hidden="true"></span>}
     {site.demo && <div class="demo-banner">Demo: вымышленный бизнес для примера</div>}
     <slot />
     <div class="mobile-call-bar">

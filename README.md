@@ -17,10 +17,37 @@ The demo business is invented and the build is `noindex`.
 ## What is inside
 
 - `site.config.ts`: the only file you edit per client (name, description, services, optional prices, hours, address, phone, messengers, map link, colors, language `ru`).
-- Sections: hero, services, optional pricing, how we work, optional testimonials (empty by default), contacts, footer.
-- Contact without a backend: phone, WhatsApp, Telegram links and a call button. No form.
-- SEO: title, description, Open Graph, sitemap, robots.txt, JSON-LD LocalBusiness, favicon.
-- Speed: system fonts, no external scripts, own SVG placeholders only.
+- Sections: hero, services, optional pricing, how we work, FAQ, reviews (sample block when empty), map, contacts, footer.
+- Contact without a backend: phone, WhatsApp, Telegram links and a sticky call button on mobile. No form.
+- SEO: title, description, Open Graph, sitemap, robots.txt, JSON-LD LocalBusiness (geo, hours), favicon, manifest.
+- Themes: `calm`, `bold`, `warm` (one line), plus dark mode by `prefers-color-scheme`.
+- Map: OpenStreetMap loads only after a click; an own SVG image shows before that.
+- Background: a notebook grid drawn with CSS gradients. See "Background" below.
+- Speed: system fonts, no external scripts, own SVG images only.
+
+## Background
+
+The page uses a light notebook grid, drawn with CSS gradients (no image):
+
+```ts
+background: { style: "grid", size: 24, margin: true }
+```
+
+- `size` is the cell size in px (`--grid-size`).
+- `margin: true` adds a soft red margin line on wide screens.
+- `style: "plain"` turns the grid off.
+
+The grid fades at the top and bottom, softens under `prefers-contrast: more` and `prefers-reduced-transparency`, and is hidden in print.
+
+## Reviews
+
+The demo has no real reviews. It shows a sample block. To use real reviews, put them in `site.config.ts`:
+
+```ts
+testimonials: [{ name: "Client name", text: "Real review text" }]
+```
+
+The sample block is replaced by the real list. Do not invent reviews.
 
 ## Turn it into a client site in 1 to 2 days (estimate)
 
@@ -44,10 +71,11 @@ The demo business is invented and the build is `noindex`.
 
 ## What I tested
 
-- `npm run check` runs ESLint, `astro check`, Vitest, `astro build` and a page-size check in one command.
-- Tests: 11 Vitest cases for `site.config` (required fields, phone and link format, production placeholders) and for the contact link helpers.
-- Build: static output in `dist/`, one page.
-- Page budget: HTML + CSS + JS was 15.7 KB against a 150 KB limit.
+- `npm run check` runs ESLint, `astro check`, Vitest, `astro build`, a page-size check and a placeholder check.
+- Tests: 13 Vitest cases for `site.config` (required fields, theme, map, FAQ, phone and link format) and the contact link helpers.
+- Build: static output in `dist/`, 3 pages (`/`, `/privacy/`, `/404.html`).
+- Page budget: HTML + CSS + JS was 39.3 KB against a 150 KB limit.
+- Placeholders: the built HTML has no TODO, lorem, placeholder or XXX tokens.
 - GitHub Actions runs the same steps on each push.
 
 ## Docs

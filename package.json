@@ -12,7 +12,8 @@
     "check:astro": "astro check",
     "test": "vitest run",
     "check:size": "node scripts/check-size.mjs",
-    "check": "npm run lint && npm run check:astro && npm run test && npm run build && npm run check:size"
+    "check:placeholders": "node scripts/check-placeholders.mjs",
+    "check": "npm run lint && npm run check:astro && npm run test && npm run build && npm run check:size && npm run check:placeholders"
   },
   "dependencies": {
     "astro": "5.18.2",
