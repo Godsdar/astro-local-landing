@@ -4,9 +4,9 @@ import { telHref, waHref, tgHref } from "../lib/format.ts";
 const base = import.meta.env.BASE_URL.replace(/\/?$/, "/");
 ---
 
-<section id="contacts" class="section" style="background: color-mix(in srgb, var(--c-ink) 4%, transparent)">
+<section id="contacts" class="section">
   <div class="container grid gap-6 md:grid-cols-2">
-    <div>
+    <div class="panel">
       <h2 class="text-2xl font-bold">Контакты</h2>
       <ul class="mt-4 space-y-2">
         <li>Телефон: <a href={telHref(site.phone)}>{site.phone}</a></li>

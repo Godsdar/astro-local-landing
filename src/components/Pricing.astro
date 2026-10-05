@@ -10,7 +10,7 @@ const priced = site.services.filter((service) => service.price);
       <div class="container">
         <h2 class="text-2xl font-bold">Цены</h2>
         {priced.length > 0 ? (
-          <ul class="mt-6 divide-y divide-black/10 rounded-xl border border-black/10">
+          <ul class="mt-6 divide-y divide-black/10 rounded-xl border border-black/10" style="background: var(--c-surface)">
             {priced.map((service) => (
               <li class="flex items-center justify-between p-4">
                 <span>{service.title}</span>

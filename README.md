@@ -39,7 +39,7 @@ background: { style: "grid", size: 24, margin: true }
 - `margin: true` adds a soft red margin line on wide screens.
 - `style: "plain"` turns the checkerboard off.
 
-The pattern fades at the top and bottom, softens under `prefers-contrast: more` and `prefers-reduced-transparency`, and is hidden in print.
+The pattern covers the whole page, softens under `prefers-contrast: more` and `prefers-reduced-transparency`, and is hidden in print.
 
 ## Reviews
 
