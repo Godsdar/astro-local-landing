@@ -6,6 +6,12 @@ A small static landing starter for a local business. Astro, TypeScript, Tailwind
 
 This repository ships with an invented **Demo** business. Replace all of it before showing a client. No real clients, prices, reviews or photos are included.
 
+## Live demo
+
+Non-commercial portfolio demo on GitHub Pages: https://godsdar.github.io/astro-local-landing/
+
+The demo business is invented and the build is `noindex`.
+
 ![Demo Dental landing](docs/screenshot.png)
 
 ## What is inside
