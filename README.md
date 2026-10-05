@@ -28,14 +28,14 @@ The demo business is invented and the build is `noindex`.
 
 ## Background
 
-The page uses a light checkerboard, drawn with a CSS `conic-gradient` (no image). Cells alternate between two adjacent low tints (teal and cyan), so nothing clashes:
+The page uses a light checkerboard, drawn with a CSS `conic-gradient` (no image). Cells alternate between two close gray tints: clearly different, but calm:
 
 ```ts
 background: { style: "grid", size: 24, margin: true }
 ```
 
 - `size` is the cell size in px (`--grid-size`); cells are shown at `2 x size` so the two colors alternate.
-- Cell colors: `--cell-a` (teal 0) and `--cell-b` (cyan 0); transparent variants in dark mode. The palette follows Open Color (MIT).
+- Cell colors: `--cell-a` and `--cell-b`, two close gray tints; darker variants in dark mode. The palette is inspired by WhatsApp (dark and light), not affiliated with WhatsApp.
 - `margin: true` adds a soft red margin line on wide screens.
 - `style: "plain"` turns the checkerboard off.
 

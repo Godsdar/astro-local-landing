@@ -7,7 +7,7 @@
 
 ## Color palette
 
-- Open Color v1.9.1 (MIT), https://yeun.github.io/open-color/ . Teal and cyan steps are used for the brand colors and the checkerboard tints.
+- The light and dark palette is inspired by WhatsApp (green accent, dark blue-gray surfaces). It is a design reference only, not affiliated with or endorsed by WhatsApp.
 
 ## Fonts
 
