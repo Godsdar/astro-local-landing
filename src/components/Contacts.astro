@@ -6,7 +6,7 @@ import { telHref, waHref, tgHref } from "../lib/format.ts";
 <section id="contacts" class="section">
   <div class="container">
     <h2 class="text-2xl font-bold">Контакты</h2>
-    <div class="card mt-6 grid gap-6 md:grid-cols-2">
+    <div class="card mt-5 grid gap-5 md:grid-cols-2">
       <ul class="space-y-2">
         <li>Телефон: <a href={telHref(site.phone)}>{site.phone}</a></li>
         {site.whatsapp && <li><a href={waHref(site.whatsapp)}>WhatsApp</a></li>}
