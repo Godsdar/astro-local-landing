@@ -1,0 +1,48 @@
+---
+import { site } from "../../site.config.ts";
+
+const m = site.map;
+const d = 0.01;
+const bbox = `${m.lon - d}%2C${m.lat - d}%2C${m.lon + d}%2C${m.lat + d}`;
+const embed = `https://www.openstreetmap.org/export/embed.html?bbox=${bbox}&layer=mapnik&marker=${m.lat}%2C${m.lon}`;
+---
+
+<section id="map" class="section">
+  <div class="container">
+    <h2 class="text-2xl font-bold">Как нас найти</h2>
+    <p class="mt-3">{site.address}</p>
+    <p class="opacity-80">{site.hours}</p>
+    <div class="mt-4 flex flex-wrap gap-3">
+      {m.links.map((link) => <a class="btn btn-ghost" href={link.url} rel="noopener">{link.label}</a>)}
+    </div>
+
+    {
+      m.provider === "osm-embed" ? (
+        <div data-map-wrap class="card mt-4" style="padding:0;overflow:hidden">
+          <div style="display:flex;flex-direction:column;align-items:center;gap:0.75rem;padding:1rem">
+            <img src="/images/map-placeholder.svg" alt="Плейсхолдер карты" width="640" height="300" />
+            <button
+              type="button"
+              class="btn btn-primary"
+              data-map-embed={embed}
+              data-map-title={`Карта: ${m.label}`}
+            >
+              Показать карту
+            </button>
+            <p class="text-sm opacity-80">{m.label}</p>
+          </div>
+        </div>
+      ) : (
+        <p class="mt-4 opacity-80">Откройте карту по ссылке выше.</p>
+      )
+    }
+
+    <noscript>
+      <p class="mt-3"><a href={m.links[0]?.url}>Открыть карту</a> (для встроенной карты нужен JavaScript).</p>
+    </noscript>
+    <p class="mt-3 text-sm opacity-80">
+      <a href="https://www.openstreetmap.org/copyright" rel="noopener">© OpenStreetMap contributors</a>
+    </p>
+    <script src="/map.js" defer></script>
+  </div>
+</section>

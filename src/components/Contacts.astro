@@ -14,7 +14,7 @@ import { telHref, waHref, tgHref } from "../lib/format.ts";
         {site.email && <li>Почта: <a href={`mailto:${site.email}`}>{site.email}</a></li>}
         <li>Адрес: {site.address}</li>
         <li>Часы: {site.hours}</li>
-        {site.mapUrl && <li><a href={site.mapUrl}>Показать на карте</a></li>}
+        <li><a href="#map">Как нас найти</a></li>
       </ul>
       <div class="mt-6 flex flex-wrap gap-3">
         <a class="btn btn-primary" href={telHref(site.phone)}>Позвонить</a>

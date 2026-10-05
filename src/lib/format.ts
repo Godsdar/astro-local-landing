@@ -66,7 +66,6 @@ export function validateConfig(
   }
   for (const [key, url] of [
     ["siteUrl", config.siteUrl],
-    ["mapUrl", config.mapUrl],
     ["ogImage", config.ogImage],
   ] as Array<[string, string | undefined]>) {
     if (url && !/^https?:\/\//.test(url) && !url.startsWith("/")) {
@@ -76,6 +75,22 @@ export function validateConfig(
 
   if (!Array.isArray(config.services) || config.services.length === 0) {
     errors.push("services: at least one required");
+  }
+
+  if (!["calm", "bold", "warm"].includes(config.theme)) {
+    errors.push("theme: must be calm, bold or warm");
+  }
+  if (!["osm-embed", "links-only"].includes(config.map?.provider)) {
+    errors.push("map.provider: must be osm-embed or links-only");
+  }
+  if (typeof config.map?.lat !== "number" || config.map.lat < -90 || config.map.lat > 90) {
+    errors.push("map.lat: must be a number in -90..90");
+  }
+  if (typeof config.map?.lon !== "number" || config.map.lon < -180 || config.map.lon > 180) {
+    errors.push("map.lon: must be a number in -180..180");
+  }
+  for (const [i, item] of (config.faq ?? []).entries()) {
+    if (!item.q || !item.a) errors.push(`faq[${i}]: q and a are required`);
   }
 
   if (options.production) {

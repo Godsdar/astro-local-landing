@@ -1,0 +1,21 @@
+---
+import { site } from "../../site.config.ts";
+---
+
+{
+  site.faq.length > 0 && (
+    <section id="faq" class="section">
+      <div class="container">
+        <h2 class="text-2xl font-bold">Вопросы и ответы</h2>
+        <div class="mt-6 space-y-3">
+          {site.faq.map((item) => (
+            <details class="card">
+              <summary class="cursor-pointer font-semibold">{item.q}</summary>
+              <p class="mt-2 opacity-80">{item.a}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}

@@ -2,9 +2,25 @@
 
 :root {
   --c-primary: #0f766e;
-  --c-accent: #f59e0b;
+  --c-accent: #14b8a6;
   --c-ink: #0f172a;
-  --c-paper: #ffffff;
+  --c-paper: #f8fafc;
+  --c-surface: #ffffff;
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2.5rem;
+  --space-5: 4rem;
+  --radius: 0.875rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --c-ink: #e2e8f0;
+    --c-paper: #0b1220;
+    --c-surface: #131c2e;
+  }
 }
 
 html {
@@ -14,13 +30,53 @@ html {
 }
 
 body {
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial,
-    sans-serif;
+  font-family: var(--font-sans);
   line-height: 1.6;
+  margin: 0;
 }
 
 a {
   color: var(--c-primary);
+  text-underline-offset: 3px;
+}
+
+:focus-visible {
+  outline: 3px solid var(--c-accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: 0;
+  background: var(--c-primary);
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 0 0 var(--radius) 0;
+}
+
+.skip-link:focus {
+  left: 0;
+  z-index: 50;
+}
+
+.container {
+  max-width: 64rem;
+  margin: 0 auto;
+  padding: 0 var(--space-2);
+}
+
+.section {
+  padding: var(--space-5) 0;
+}
+
+.card {
+  background: var(--c-surface);
+  border: 1px solid color-mix(in srgb, var(--c-ink) 12%, transparent);
+  border-radius: var(--radius);
+  padding: var(--space-3);
+  transition: transform 160ms ease, box-shadow 160ms ease;
 }
 
 .btn {
@@ -28,10 +84,12 @@ a {
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  padding: 0.75rem 1.25rem;
-  border-radius: 0.75rem;
+  padding: 0.7rem 1.2rem;
+  border-radius: var(--radius);
   font-weight: 600;
   text-decoration: none;
+  border: 1px solid transparent;
+  transition: transform 140ms ease, background 140ms ease;
 }
 
 .btn-primary {
@@ -41,21 +99,16 @@ a {
 
 .btn-accent {
   background: var(--c-accent);
-  color: #1a1a1a;
+  color: #06281f;
 }
 
 .btn-ghost {
-  border: 1px solid var(--c-primary);
+  border-color: var(--c-primary);
   color: var(--c-primary);
 }
 
-.section {
-  padding: 3rem 1rem;
-}
-
-.container {
-  max-width: 64rem;
-  margin: 0 auto;
+.btn:hover {
+  transform: translateY(-2px);
 }
 
 .demo-banner {
@@ -64,4 +117,35 @@ a {
   text-align: center;
   font-weight: 600;
   padding: 0.5rem 1rem;
+}
+
+.mobile-call-bar {
+  position: sticky;
+  bottom: 0;
+  display: none;
+}
+
+@media (max-width: 640px) {
+  .mobile-call-bar {
+    display: block;
+    background: var(--c-surface);
+    border-top: 1px solid color-mix(in srgb, var(--c-ink) 12%, transparent);
+    padding: 0.6rem var(--space-2);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .reveal {
+    animation: rise 420ms ease both;
+  }
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
 }

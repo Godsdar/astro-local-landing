@@ -2,6 +2,8 @@
 // This starter ships with an invented DEMO business. Replace everything below.
 // No real clients, prices, reviews or photos are included.
 
+export type ThemeName = "calm" | "bold" | "warm";
+
 export type Service = {
   title: string;
   description: string;
@@ -10,10 +12,21 @@ export type Service = {
 
 export type Step = { title: string; text: string };
 export type Testimonial = { name: string; text: string };
+export type FaqItem = { q: string; a: string };
+
+export type MapConfig = {
+  provider: "osm-embed" | "links-only";
+  lat: number;
+  lon: number;
+  zoom: number;
+  label: string;
+  links: { label: string; url: string }[];
+};
 
 export type SiteConfig = {
-  lang: "ru";
+  lang: "ru" | "en";
   demo: boolean;
+  theme: ThemeName;
   businessName: string;
   tagline: string;
   description: string;
@@ -24,14 +37,14 @@ export type SiteConfig = {
   email?: string;
   instagram?: string;
   address: string;
-  mapUrl?: string;
   hours: string;
   services: Service[];
   showPricing: boolean;
   pricingNote?: string;
   process: Step[];
   testimonials: Testimonial[];
-  colors: { primary: string; accent: string; ink: string; paper: string };
+  faq: FaqItem[];
+  map: MapConfig;
   siteUrl: string;
   ogImage: string;
 };
@@ -39,6 +52,7 @@ export type SiteConfig = {
 export const site: SiteConfig = {
   lang: "ru",
   demo: true,
+  theme: "calm",
   businessName: "Demo Dental (Demo)",
   tagline: "Стоматология для всей семьи",
   description:
@@ -50,7 +64,6 @@ export const site: SiteConfig = {
   email: "demo@example.com",
   instagram: "demo_dental",
   address: "Demo: улица Пример, 1",
-  mapUrl: "https://www.google.com/maps/search/?api=1&query=Demo",
   hours: "Пн-Сб 09:00-19:00",
   services: [
     {
@@ -74,11 +87,32 @@ export const site: SiteConfig = {
     { title: "Визит", text: "Осмотр и план действий в клинике." },
   ],
   testimonials: [],
-  colors: {
-    primary: "#0f766e",
-    accent: "#f59e0b",
-    ink: "#0f172a",
-    paper: "#ffffff",
+  faq: [
+    {
+      q: "Как записаться?",
+      a: "Позвоните, напишите в WhatsApp или Telegram. Demo: это вымышленный ответ.",
+    },
+    {
+      q: "Где вы находитесь?",
+      a: "Адрес указан в разделе «Как нас найти». Demo: адрес вымышленный.",
+    },
+  ],
+  map: {
+    provider: "osm-embed",
+    lat: 43.238949,
+    lon: 76.889709,
+    zoom: 13,
+    label: "Demo location, не настоящий адрес",
+    links: [
+      {
+        label: "Построить маршрут",
+        url: "https://www.openstreetmap.org/directions?to=43.238949%2C76.889709",
+      },
+      {
+        label: "Открыть в картах",
+        url: "https://www.openstreetmap.org/?mlat=43.238949&mlon=76.889709#map=15/43.238949/76.889709",
+      },
+    ],
   },
   siteUrl: "https://demo-dental.example.com",
   ogImage: "/images/og.svg",
