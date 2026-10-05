@@ -28,17 +28,18 @@ The demo business is invented and the build is `noindex`.
 
 ## Background
 
-The page uses a light notebook grid, drawn with CSS gradients (no image):
+The page uses a light checkerboard, drawn with a CSS `conic-gradient` (no image). Cells alternate between dark blue and green:
 
 ```ts
 background: { style: "grid", size: 24, margin: true }
 ```
 
-- `size` is the cell size in px (`--grid-size`).
+- `size` is the cell size in px (`--grid-size`); cells are shown at `2 x size` so the two colors alternate.
+- Cell colors: `--cell-a` (dark blue) and `--cell-b` (green); lighter variants in dark mode.
 - `margin: true` adds a soft red margin line on wide screens.
-- `style: "plain"` turns the grid off.
+- `style: "plain"` turns the checkerboard off.
 
-The grid fades at the top and bottom, softens under `prefers-contrast: more` and `prefers-reduced-transparency`, and is hidden in print.
+The pattern fades at the top and bottom, softens under `prefers-contrast: more` and `prefers-reduced-transparency`, and is hidden in print.
 
 ## Reviews
 
