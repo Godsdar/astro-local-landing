@@ -3,11 +3,15 @@ import "../styles/global.css";
 import { site } from "../../site.config.ts";
 import { themes, themeVars } from "../lib/theme.ts";
 
-const { lang, businessName, description, city, address, phone, siteUrl, ogImage } = site;
+const base = import.meta.env.BASE_URL;
+const { lang, businessName, description, city, address, phone, siteUrl } = site;
 
 const theme = themes[site.theme] ?? themes.calm;
 const vars = themeVars(theme);
 const indexable = import.meta.env.DEMO_BUILD !== "true" && !site.demo;
+
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+const ogImage = new URL(`${base}images/og.svg`, Astro.site).href;
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -15,7 +19,7 @@ const jsonLd = {
   name: businessName,
   description,
   telephone: phone,
-  url: siteUrl,
+  url: canonical,
   address: {
     "@type": "PostalAddress",
     addressLocality: city,
@@ -42,20 +46,20 @@ const jsonLd = {
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{site.demo ? `${businessName}` : businessName}</title>
+    <title>{businessName}</title>
     <meta name="description" content={description} />
-    <link rel="canonical" href={siteUrl} />
+    <link rel="canonical" href={canonical} />
     {!indexable && <meta name="robots" content="noindex, nofollow" />}
     <meta
       http-equiv="Content-Security-Policy"
       content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self'; font-src 'self'; frame-src https://www.openstreetmap.org; base-uri 'self'; form-action 'none'"
     />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="icon" href={`${base}favicon.svg`} type="image/svg+xml" />
+    <link rel="manifest" href={`${base}manifest.webmanifest`} />
     <meta property="og:type" content="website" />
     <meta property="og:title" content={businessName} />
     <meta property="og:description" content={description} />
-    <meta property="og:url" content={siteUrl} />
+    <meta property="og:url" content={canonical} />
     <meta property="og:image" content={ogImage} />
     <meta name="twitter:card" content="summary_large_image" />
     <style define:vars={vars}></style>

@@ -1,6 +1,7 @@
 ---
 import { site } from "../../site.config.ts";
 import { telHref, waHref, tgHref } from "../lib/format.ts";
+const base = import.meta.env.BASE_URL;
 ---
 
 <section id="contacts" class="section" style="background: color-mix(in srgb, var(--c-ink) 4%, transparent)">
@@ -22,7 +23,7 @@ import { telHref, waHref, tgHref } from "../lib/format.ts";
       </div>
     </div>
     <img
-      src="/images/map-placeholder.svg"
+      src={`${base}images/map-placeholder.svg`}
       alt="Demo map placeholder"
       width="640"
       height="420"
