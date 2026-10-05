@@ -14,7 +14,8 @@
   --space-5: 4rem;
   --radius: 0.875rem;
   --grid-size: 24px;
-  --grid-line: color-mix(in srgb, var(--c-ink) 8%, transparent);
+  /* dark blue-green grid lines */
+  --grid-line: rgba(11, 79, 74, 0.2);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -22,6 +23,8 @@
     --c-ink: #e2e8f0;
     --c-paper: #0b1220;
     --c-surface: #131c2e;
+    /* keep the blue-green family, lighter so it is visible on the dark paper */
+    --grid-line: rgba(45, 212, 191, 0.16);
   }
 }
 
