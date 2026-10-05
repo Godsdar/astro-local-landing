@@ -5,7 +5,7 @@
   --c-paper: #f0f2f5;
   --c-surface: #ffffff;
   --c-ink: #111b21;
-  --c-muted: #667781;
+  --c-muted: #56636c;
   --c-primary: #008069;
   --c-primary-strong: #008069;
   --c-primary-ink: #ffffff;
@@ -15,6 +15,9 @@
   /* checkerboard cells: clearly different, still calm */
   --cell-a: #f0f2f5;
   --cell-b: #e2e8ec;
+
+  --shadow: 0 1px 2px rgba(15, 23, 42, 0.06), 0 8px 24px rgba(15, 23, 42, 0.08);
+  --shadow-strong: 0 2px 4px rgba(15, 23, 42, 0.08), 0 14px 36px rgba(15, 23, 42, 0.12);
 
   --grid-size: 24px;
   --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
@@ -39,7 +42,7 @@
     --c-paper: #0b141a;
     --c-surface: #111b21;
     --c-ink: #e9edef;
-    --c-muted: #8696a0;
+    --c-muted: #9fb0bb;
     --c-primary: #00a884;
     --c-primary-strong: #00a884;
     --c-primary-ink: #0b141a;
@@ -47,6 +50,8 @@
     --c-border: #222d34;
     --cell-a: #0b141a;
     --cell-b: #16242c;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.5), 0 10px 28px rgba(0, 0, 0, 0.4);
+    --shadow-strong: 0 2px 6px rgba(0, 0, 0, 0.55), 0 16px 40px rgba(0, 0, 0, 0.5);
   }
 }
 
@@ -138,7 +143,17 @@ a:hover {
 }
 
 .section {
-  padding: clamp(1.75rem, 4vw, 3rem) 0;
+  padding: clamp(1.25rem, 3vw, 2.25rem) 0;
+}
+
+/* Content sits on a solid panel so text never runs over the checkerboard.
+   The checkerboard stays visible in the gutters around each panel. */
+.section > .container {
+  background: var(--c-paper);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius);
+  padding: clamp(1.25rem, 3vw, 2rem);
+  box-shadow: var(--shadow-strong);
 }
 
 .prose {
@@ -150,6 +165,7 @@ a:hover {
   border: 1px solid var(--c-border);
   border-radius: var(--radius);
   padding: 1.25rem;
+  box-shadow: var(--shadow);
 }
 
 .btn {
@@ -162,7 +178,9 @@ a:hover {
   font-weight: 600;
   text-decoration: none;
   border: 1px solid transparent;
-  transition: transform 140ms ease, background 140ms ease, border-color 140ms ease;
+  box-shadow: var(--shadow);
+  transition: transform 140ms ease, background 140ms ease, border-color 140ms ease,
+    box-shadow 140ms ease;
 }
 
 .btn-primary {
@@ -182,6 +200,7 @@ a:hover {
 
 .btn:hover {
   transform: translateY(-1px);
+  box-shadow: var(--shadow-strong);
 }
 
 .btn-primary:hover,
